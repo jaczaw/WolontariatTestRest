@@ -18,13 +18,12 @@ public class StartApp {
         SpringApplication.run(StartApp.class, args);
     }
 
-    // init bean to insert 3 books into h2 database.
     @Bean
     CommandLineRunner initDatabase(JobRepository repository) {
         return args -> {
             repository.save(new Job(LocalDate.parse("2019-07-01"), LocalTime.parse("07:00"),LocalTime.parse("15:00"), new Volunteer("Jacek1","Zawislak1","Spec1")));
             repository.save(new Job(LocalDate.parse("2019-07-01"), LocalTime.parse("08:00"),LocalTime.parse("15:00"), new Volunteer("Jacek2","Zawislak12","Spec12")));
-            repository.save(new Job(LocalDate.parse("2019-07-01"), LocalTime.parse("10:00"),LocalTime.parse("15:00"), new Volunteer("Jacek3","Zawislak13","Spec13")));
+            repository.save(new Job(LocalDate.parse("2019-07-01"), LocalTime.parse("01:00"),LocalTime.parse("06:00"), new Volunteer("Jacek3","Zawislak13","Spec13")));
             repository.save(new Job(LocalDate.parse("2019-07-01"), LocalTime.parse("05:00"),LocalTime.parse("06:00"), new Volunteer("Jacek4","Zawislak14","Spec14")));
 
         };

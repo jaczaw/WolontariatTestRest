@@ -10,6 +10,9 @@ import pl.jz.rekrutacja.model.Job;
 import pl.jz.rekrutacja.model.Volunteer;
 import pl.jz.rekrutacja.repo.JobRepository;
 import pl.jz.rekrutacja.repo.VolunteerRepository;
+import pl.jz.rekrutacja.util.HelperDouble;
+
+import java.time.LocalTime;
 import java.util.List;
 
 
@@ -36,7 +39,7 @@ public class VolunteeRest {
         return volunteerRepository.findAll();
     }
 
-    //(a.startTime < b.endTime) AND (a.endTime > b.startTime)
+
     @GetMapping("/dubel")
     int countDuble() {
         List<Job> lista = jobRepository.findAll();
@@ -44,9 +47,9 @@ public class VolunteeRest {
 
         for (Job job:lista){
 
-            if(job.getStartJobTime().isBefore(job.getEndJobTime()) &&
-                    job.getEndJobTime().isAfter(job.getStartJobTime())){
+            if(HelperDouble.checkDateAndTime(job,LocalTime.parse("07:00"),LocalTime.parse("15:00"))){
                 count++;
+
             }
        }
         return count;
